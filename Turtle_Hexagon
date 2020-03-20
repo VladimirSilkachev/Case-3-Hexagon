@@ -1,25 +1,49 @@
+"""Case-study #5 Тесселяция
+Разработчики:
+Попов К.М. 40%, Винников А.А. 40%, Силкачев В.В. 15%
+
+"""
+import turtle as t
+import math as m
+
 def get_color_choice():
-    b = input("Пожалуйста, введите цвет: ")
-    while b not in a:
-        print(b, "не является верным значением. Пожалуйста, введите другой: ", end = "")
-        b = input()
-    c.append(b)
-    b = input("Пожалуйста, введите цвет: ")
-    while b not in a:
-        print(b, "не является верным значением. Пожалуйста, введите другой: ", end = "")
-        b = input()
-    c.append(b)
-    return str(c[0]), str(c[1])
+  b = input("Пожалуйста, введите цвет: ")
+  while b not in colors:
+    b = input(b, "не является верным значением. Пожалуйста, введите другой: ", end="")
+  clr.append(b)
+  b = input("Пожалуйста, введите цвет: ")
+  while b not in colors:
+    b = input(b, "не является верным значением. Пожалуйста, введите другой: ", end="")
+  clr.append(b)
+  return str(clr[0]), str(clr[1])
+
 
 def get_num_hexagons():
+  v = int(input("Пожалуйста, введите количество шестиугольников, располагаемых в ряд: "))
+  while int(v) < 4 or int(v) > 20:
+    v = int(input("Оно должно быть от 4  до 20. Пожалуйста, повторите попытку: "))
+  return v
 
-    v = int(input("Пожалуйста, введите количество шестиугольников, располагаемых в ряд: "))
-    while int(v) < 4 or int(v) > 20:
-        v = int(input("Оно должно быть от 4  до 20. Пожалуйста, повторите попытку: "))
-    return v
+def draw_hexagon(x, y, side_len, color):
+  t.up()
+  t.goto(x, y)
+  t.down()
+  t.begin_fill()
+  t.fillcolor(color)
+  for _ in range(6):
+    t.forward(side_len)
+    t.left(60)
+  t.end_fill()
 
-a = ["синий", "зелёный", "жёлтый", "красный", "фиолетовый", "розовый", "оранжевый"]
-c = []    #список двух выбранных цветов
+
+colors = ["синий", "зелёный", "жёлтый", "красный", "фиолетовый", "розовый", "оранжевый"]
+colors_1 = ["blue", "green", "yellow", "red", "purple", "pink", "orange"]
+clr = []
+lst_x = []
+t.right(90)
+t.speed(0)
+t.setup(500, 500)
+
 print("""Допустимые цвета заливки:
 синий
 зелёный
@@ -29,7 +53,34 @@ print("""Допустимые цвета заливки:
 розовый
 оранжевый""")
 
-print(get_color_choice())
+clr_1, clr_2 =  get_color_choice()
+clr_1 = colors_1[colors.index(clr_1)]
+clr_2 = colors_1[colors.index(clr_2)]
+count_ = get_num_hexagons()
+clr = []
+for i in range(count_):
+    if i % 2 == 0:
+        clr.append(clr_1)
+    else:
+        clr.append(clr_2)
 
 
-print(get_num_hexagons())
+for j in range(count_):
+    if j % 2 == 0:
+        lst_x.append(-250)
+    else:
+        lst_x.append(-250 + (500//count_) // 2)
+
+side_len = (500//count_) // m.sqrt(3)
+x = -250
+y = 250 - side_len // 2
+
+for h in lst_x:
+    x = h
+    for i in clr:
+        draw_hexagon(x, y, side_len, i)
+        x += side_len * m.sqrt(3)
+    y -= 1.5 * side_len
+
+
+t.done()
