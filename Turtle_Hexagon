@@ -9,16 +9,14 @@ import local as lc
 
 def get_color_choice():
     b = input(lc.pls_inpclr)
-    while b not in a:
-        print(b, lc.notright, end = "")
-        b = input()
-    c.append(b)
+    while b not in lc.lstcolor_rus:
+        b = input(b, lc.notright, end = "")
+    clr.append(b)
     b = input(lc.pls_inpclr)
-    while b not in a:
-        print(b, lc.notright, end = "")
-        b = input()
-    c.append(b)
-    return str(c[0]), str(c[1])
+    while b not in lc.lstcolor_rus:
+        b = input(b, lc.notright, end = "")
+    clr.append(b)
+    return str(clr[0]), str(clr[1])
 
 
 def get_num_hexagons():
@@ -44,8 +42,6 @@ def draw_hexagon(x, y, side_len, color):
   t.end_fill()
 
 
-colors = lc.lstcolor_rus
-colors_1 = lc.lstcolor_eng
 clr = []
 lst_x = []
 t.right(90)
@@ -55,8 +51,8 @@ t.setup(500, 500)
 print(lc.menu_)
 
 clr_1, clr_2 =  get_color_choice()
-clr_1 = colors_1[colors.index(clr_1)]
-clr_2 = colors_1[colors.index(clr_2)]
+clr_1 = lc.lstcolor_eng[lc.lstcolor_rus.index(clr_1)]
+clr_2 = lc.lstcolor_eng[lc.lstcolor_rus.index(clr_2)]
 count_ = get_num_hexagons()
 clr = []
 for i in range(int(count_)):
