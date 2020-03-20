@@ -5,6 +5,7 @@
 """
 import turtle as t
 import math as m
+import local as lc
 
 def get_color_choice():
     b = input(lc.pls_inpclr)
@@ -21,7 +22,7 @@ def get_color_choice():
 
 
 def get_num_hexagons():
-    v = int(input(lc.numb_hex))
+    v = input(lc.numb_hex)
     while True:
         try:
             while int(v) < 4 or int(v) > 20:
@@ -30,7 +31,6 @@ def get_num_hexagons():
             break
         except:
             v = input(lc.hexError1)
-
 
 def draw_hexagon(x, y, side_len, color):
   t.up()
@@ -44,42 +44,35 @@ def draw_hexagon(x, y, side_len, color):
   t.end_fill()
 
 
-colors = ["синий", "зелёный", "жёлтый", "красный", "фиолетовый", "розовый", "оранжевый"]
-colors_1 = ["blue", "green", "yellow", "red", "purple", "pink", "orange"]
+colors = lc.lstcolor_rus
+colors_1 = lc.lstcolor_eng
 clr = []
 lst_x = []
 t.right(90)
 t.speed(0)
 t.setup(500, 500)
 
-print("""Допустимые цвета заливки:
-синий
-зелёный
-жёлтый
-красный
-фиолетовый
-розовый
-оранжевый""")
+print(lc.menu_)
 
 clr_1, clr_2 =  get_color_choice()
 clr_1 = colors_1[colors.index(clr_1)]
 clr_2 = colors_1[colors.index(clr_2)]
 count_ = get_num_hexagons()
 clr = []
-for i in range(count_):
+for i in range(int(count_)):
     if i % 2 == 0:
         clr.append(clr_1)
     else:
         clr.append(clr_2)
 
 
-for j in range(count_):
+for j in range(int(count_)):
     if j % 2 == 0:
         lst_x.append(-250)
     else:
-        lst_x.append(-250 + (500//count_) // 2)
+        lst_x.append(-250 + (500//int(count_)) // 2)
 
-side_len = (500//count_) // m.sqrt(3)
+side_len = (500//int(count_)) // m.sqrt(3)
 x = -250
 y = 250 - side_len // 2
 
