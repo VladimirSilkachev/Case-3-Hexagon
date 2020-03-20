@@ -21,9 +21,9 @@ def get_color_choice():
 
 
 def get_num_hexagons():
+    v = int(input(lc.numb_hex))
     while True:
         try:
-            v = int(input(lc.numb_hex))
             while int(v) < 4 or int(v) > 20:
                 v = int(input(lc.hexError1))
             return v
