@@ -7,22 +7,30 @@ import turtle as t
 import math as m
 
 def get_color_choice():
-  b = input("Пожалуйста, введите цвет: ")
-  while b not in colors:
-    b = input(b, "не является верным значением. Пожалуйста, введите другой: ", end="")
-  clr.append(b)
-  b = input("Пожалуйста, введите цвет: ")
-  while b not in colors:
-    b = input(b, "не является верным значением. Пожалуйста, введите другой: ", end="")
-  clr.append(b)
-  return str(clr[0]), str(clr[1])
+    b = input(lc.pls_inpclr)
+    while b not in a:
+        print(b, lc.notright, end = "")
+        b = input()
+    c.append(b)
+    b = input(lc.pls_inpclr)
+    while b not in a:
+        print(b, lc.notright, end = "")
+        b = input()
+    c.append(b)
+    return str(c[0]), str(c[1])
 
 
 def get_num_hexagons():
-  v = int(input("Пожалуйста, введите количество шестиугольников, располагаемых в ряд: "))
-  while int(v) < 4 or int(v) > 20:
-    v = int(input("Оно должно быть от 4  до 20. Пожалуйста, повторите попытку: "))
-  return v
+    while True:
+        try:
+            v = int(input(lc.numb_hex))
+            while int(v) < 4 or int(v) > 20:
+                v = int(input(lc.hexError1))
+            return v
+            break
+        except:
+            v = input(lc.hexError1)
+
 
 def draw_hexagon(x, y, side_len, color):
   t.up()
